@@ -1,15 +1,23 @@
+Om een ​​achtergrondafbeelding toe te voegen aan het spelcontainer (#game-container) in plaats van een effen kleur, kun je de achtergrondafbeelding-eigenschap gebruiken in CSS. Hier is de aangepaste code met een achtergrondafbeelding:
+
+```css
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
 }
+
 #game-container {
     position: relative;
     width: 500px;
     height: 500px;
     margin: 50px auto;
     border: 2px solid black;
+    background-image: url('achtergrondafbeelding.jpg'); /* Vervang 'achtergrondafbeelding.jpg' door het pad naar jouw afbeelding */
+    background-size: cover; /* Past de afbeelding aan zodat deze de volledige container bedekt */
+    background-position: center; /* Plaatst de afbeelding in het midden van de container */
 }
+
 #ball {
     width: 50px;
     height: 50px;
@@ -19,8 +27,8 @@ body, html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    print: (Jooo)
 }
+
 #goal {
     width: 50px;
     height: 50px;
@@ -29,3 +37,6 @@ body, html {
     top: 80%;
     left: 80%;
 }
+```
+
+Vergeet niet 'achtergrondafbeelding.jpg' te vervangen door het pad naar jouw eigen afbeelding.
