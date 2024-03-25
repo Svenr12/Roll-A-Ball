@@ -13,7 +13,7 @@ body, html {
     height: 500px;
     margin: 50px auto;
     border: 2px solid black;
-    background-image: url("images/image.png"); /* Vervang 'achtergrondafbeelding.jpg' door het pad naar jouw afbeelding */
+    background-image: url("Roll-A-Ball/images/image.png"); /* Vervang 'achtergrondafbeelding.jpg' door het pad naar jouw afbeelding */
     background-size: cover; /* Past de afbeelding aan zodat deze de volledige container bedekt */
     background-position: center; /* Plaatst de afbeelding in het midden van de container */
 }
