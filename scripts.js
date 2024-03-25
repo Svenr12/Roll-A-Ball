@@ -3,32 +3,44 @@ document.addEventListener("DOMContentLoaded", function() {
     const goal = document.getElementById('goal');
     const gameContainer = document.getElementById('game-container');
 
+    // Huidige positie van de bal
+    let ballLeft = 0;
+    let ballTop = 0;
+
+    // Bewegingsstap voor de bal
+    const step = 10;
+
     // Beweging van de bal
     document.addEventListener('keydown', function(event) {
         const key = event.key;
-        const ballStyle = getComputedStyle(ball);
-        const ballLeft = parseInt(ballStyle.left);
-        const ballTop = parseInt(ballStyle.top);
 
         switch (key) {
             case 'ArrowUp':
-                ball.style.top = (ballTop - 10) + 'px';
+                moveBall(0, -step);
                 break;
             case 'ArrowDown':
-                ball.style.top = (ballTop + 10) + 'px';
+                moveBall(0, step);
                 break;
             case 'ArrowLeft':
-                ball.style.left = (ballLeft - 10) + 'px';
+                moveBall(-step, 0);
                 break;
             case 'ArrowRight':
-                ball.style.left = (ballLeft + 10) + 'px';
+                moveBall(step, 0);
                 break;
         }
+    });
+
+    // Beweeg de bal met gegeven offset
+    function moveBall(offsetX, offsetY) {
+        ballLeft += offsetX;
+        ballTop += offsetY;
+        ball.style.transform = `translate(${ballLeft}px, ${ballTop}px)`;
+
         // Controleer winvoorwaarde
         if (checkCollision(ball, goal)) {
             alert('Gefeliciteerd! Je hebt gewonnen!');
         }
-    });
+    }
 
     // Controleer of de bal het doel bereikt
     function checkCollision(ball, goal) {
