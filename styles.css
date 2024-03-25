@@ -1,6 +1,3 @@
-Om een ​​achtergrondafbeelding toe te voegen aan het spelcontainer (#game-container) in plaats van een effen kleur, kun je de achtergrondafbeelding-eigenschap gebruiken in CSS. Hier is de aangepaste code met een achtergrondafbeelding:
-
-```css
 body, html {
     margin: 0;
     padding: 0;
@@ -13,7 +10,7 @@ body, html {
     height: 500px;
     margin: 50px auto;
     border: 2px solid black;
-    background-image: url("Roll-A-Ball/images/image.png"); /* Vervang 'achtergrondafbeelding.jpg' door het pad naar jouw afbeelding */
+    background-image: url('images/ixLsWe8v-G8HnyX5F2UIGmy_s278YKT_17ALufTq4QsmFSW_Zv_TyMImWpuhutsUBma-ntCAvAAqaA0Va39JMUCazrgQxgCpDXTh.png'); /* Vervang 'achtergrondafbeelding.jpg' door het pad naar jouw achtergrondafbeelding */
     background-size: cover; /* Past de afbeelding aan zodat deze de volledige container bedekt */
     background-position: center; /* Plaatst de afbeelding in het midden van de container */
 }
@@ -21,7 +18,8 @@ body, html {
 #ball {
     width: 50px;
     height: 50px;
-    background-color: red;
+    background-image: url('images/image.png'); /* Vervang 'bal_afbeelding.jpg' door het pad naar jouw afbeelding voor de bal */
+    background-size: cover; /* Past de afbeelding aan zodat deze de volledige bal bedekt */
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -36,6 +34,8 @@ body, html {
     position: absolute;
     top: 80%;
     left: 80%;
+}
+
 }
 ```
 
