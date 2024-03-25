@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Controleer winvoorwaarde
         if (checkCollision(ball, goal)) {
-            alert('bakker heeft de ontbijtkoek afgepakt ga nu voorin zitten!');
+            alert('bakker heeft de ontbijtkoek van je afgepakt ga nu voorin zitten!');
         }
     }
 
