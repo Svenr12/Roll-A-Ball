@@ -22,8 +22,8 @@ body, html {
     background-size: cover; /* Past de afbeelding aan zodat deze de volledige bal bedekt */
     border-radius: 50%;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 10%;
+    left: 10%;
     transform: translate(-50%, -50%);
 }
 
