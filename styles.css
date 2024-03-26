@@ -28,16 +28,16 @@ body, html {
     transform: translate(-50%, -50%);
 }
 
-#goal {
+.goal {
     width: 50px;
     height: 50px;
     background-image: url('images/AHI_43545239363730323839.jpg'); /* Vervang 'doel_afbeelding.jpg' door het pad naar jouw afbeelding voor de goal */
     background-size: cover; /* Past de afbeelding aan zodat deze de volledige goal bedekt */
     position: absolute;
-    top: 80%;
     left: 80%;
-
+    transition: background-color 0.5s ease; /* Voeg overgangseffect toe voor achtergrondkleurwijziging */
 }
-```
 
-Vergeet niet 'achtergrondafbeelding.jpg' te vervangen door het pad naar jouw eigen afbeelding.
+.goal-reached {
+    background-color: yellow; /* Stijl voor een bereikt doel */
+}
