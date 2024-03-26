@@ -29,7 +29,18 @@ document.addEventListener("DOMContentLoaded", function() {
             alert('Je hebt alle munitie afgepakt, Gefeliciteerd!');
         }
     });
+    
+ // Verplaats de goal naar de spawn point van de bal
+    function moveGoalToSpawnPoint(ball) {
+        const ballRect = ball.getBoundingClientRect();
+        const ballSpawnX = ballRect.left;
+        const ballSpawnY = ballRect.top;
+        
+        goal.style.left = ballSpawnX + 'px';
+        goal.style.top = ballSpawnY + 'px';
+    }
 
+    
     // Controleer of de bal het doel bereikt
     function checkCollision(ball, goal) {
         const ballRect = ball.getBoundingClientRect();
