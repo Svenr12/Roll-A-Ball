@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const ball = document.getElementById('ball');
     const goals = document.querySelectorAll('.goal');
     const gameContainer = document.getElementById('game-container');
+    const goalImages = [
+        'images/AHI_43545239363730323839.jpg',
+        'images/other_goal_image.jpg', // Voeg zoveel afbeeldingen toe als je wilt
+    ];
 
     // Beweging van de bal
     document.addEventListener('keydown', function(event) {
@@ -55,6 +59,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const ballRect = ball.getBoundingClientRect();
         goal.style.left = ballRect.left + 'px';
         goal.style.top = ballRect.top + 'px';
+        // Willekeurige afbeelding voor het doel
+        const randomImageIndex = Math.floor(Math.random() * goalImages.length);
+        goal.style.backgroundImage = `url('${goalImages[randomImageIndex]}')`;
     }
 
     // Voorkom dat de bal de container verlaat
@@ -74,4 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
             ball.style.top = containerRect.bottom - ball.clientHeight + 'px';
         }
     }
+
+    // Initialiseer doelen
+    goals.forEach(goal => resetGoal(goal));
 });
