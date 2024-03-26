@@ -2,37 +2,31 @@ document.addEventListener("DOMContentLoaded", function() {
     const ball = document.getElementById('ball');
     const goal = document.getElementById('goal');
     const gameContainer = document.getElementById('game-container');
-    const containerRect = gameContainer.getBoundingClientRect();
 
     // Beweging van de bal
     document.addEventListener('keydown', function(event) {
         const key = event.key;
         const ballStyle = getComputedStyle(ball);
-        let ballLeft = parseInt(ballStyle.left);
-        let ballTop = parseInt(ballStyle.top);
+        const ballLeft = parseInt(ballStyle.left);
+        const ballTop = parseInt(ballStyle.top);
 
         switch (key) {
             case 'ArrowUp':
-                ballTop = Math.max(ballTop - 10, containerRect.top); // Controleer bovenste grens
+                ball.style.top = (ballTop - 10) + 'px';
                 break;
             case 'ArrowDown':
-                ballTop = Math.min(ballTop + 10, containerRect.bottom - ball.clientHeight); // Controleer onderste grens
+                ball.style.top = (ballTop + 10) + 'px';
                 break;
             case 'ArrowLeft':
-                ballLeft = Math.max(ballLeft - 10, containerRect.left); // Controleer linker grens
+                ball.style.left = (ballLeft - 10) + 'px';
                 break;
             case 'ArrowRight':
-                ballLeft = Math.min(ballLeft + 10, containerRect.right - ball.clientWidth); // Controleer rechter grens
+                ball.style.left = (ballLeft + 10) + 'px';
                 break;
         }
-
-        // Pas de positie van de bal aan
-        ball.style.left = ballLeft + 'px';
-        ball.style.top = ballTop + 'px';
-
         // Controleer winvoorwaarde
         if (checkCollision(ball, goal)) {
-            alert('Je hebt alle munitie afgepakt, Gefeliciteerd');
+            alert('Je hebt alle munitie afgepakt, Gefeliciteerd!');
         }
     });
 
