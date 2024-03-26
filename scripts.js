@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const ball = document.getElementById('ball');
-    const goals = document.querySelectorAll('.goal');
+    const goal = document.getElementById('goal');
     const gameContainer = document.getElementById('game-container');
 
     // Beweging van de bal
@@ -25,15 +25,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 break;
         }
         // Controleer winvoorwaarde
-        goals.forEach(goal => {
-            if (checkCollision(ball, goal)) {
-                goal.style.display = 'none'; // Verberg het doel
-            }
-        });
+        if (checkCollision(ball, goal)) {
+            alert('Je hebt alle munitie afgepakt, Gefeliciteerd!');
+        }
     });
     
     
-    // Controleer of de bal een doel bereikt
+    // Controleer of de bal het doel bereikt
     function checkCollision(ball, goal) {
         const ballRect = ball.getBoundingClientRect();
         const goalRect = goal.getBoundingClientRect();
