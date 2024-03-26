@@ -1,47 +1,33 @@
 document.addEventListener("DOMContentLoaded", function() {
     const ball = document.getElementById('ball');
-    const goals = document.querySelectorAll('.goal');
+    const goal = document.getElementById('goal');
     const gameContainer = document.getElementById('game-container');
-    const goalImages = [
-        'images/AHI_43545239363730323839.jpg',
-        'images/763.jpg', // Voeg zoveel afbeeldingen toe als je wilt
-    ];
 
     // Beweging van de bal
     document.addEventListener('keydown', function(event) {
         const key = event.key;
         const ballStyle = getComputedStyle(ball);
-        let ballLeft = parseInt(ballStyle.left);
-        let ballTop = parseInt(ballStyle.top);
+        const ballLeft = parseInt(ballStyle.left);
+        const ballTop = parseInt(ballStyle.top);
 
         switch (key) {
             case 'ArrowUp':
-                ballTop = Math.max(ballTop - 10, 0);
+                ball.style.top = (ballTop - 10) + 'px';
                 break;
             case 'ArrowDown':
-                ballTop = Math.min(ballTop + 10, gameContainer.clientHeight - ball.clientHeight);
+                ball.style.top = (ballTop + 10) + 'px';
                 break;
             case 'ArrowLeft':
-                ballLeft = Math.max(ballLeft - 10, 0);
+                ball.style.left = (ballLeft - 10) + 'px';
                 break;
             case 'ArrowRight':
-                ballLeft = Math.min(ballLeft + 10, gameContainer.clientWidth - ball.clientWidth);
+                ball.style.left = (ballLeft + 10) + 'px';
                 break;
         }
-
-        // Verplaats de bal
-        ball.style.left = ballLeft + 'px';
-        ball.style.top = ballTop + 'px';
-
-        // Controleer of de bal de container verlaat
-        checkBoundary(ball);
-        
-        // Controleer winvoorwaarde voor elk doel
-        goals.forEach(goal => {
-            if (checkCollision(ball, goal)) {
-                resetGoal(goal);
-            }
-        });
+        // Controleer winvoorwaarde
+        if (checkCollision(ball, goal)) {
+            alert('Je hebt alle munitie afgepakt, Gefeliciteerd!');
+        }
     });
 
     // Controleer of de bal het doel bereikt
@@ -53,35 +39,4 @@ document.addEventListener("DOMContentLoaded", function() {
                  ballRect.bottom < goalRect.top || 
                  ballRect.top > goalRect.bottom);
     }
-
-    // Teleporteer het doel naar het startpunt van de bal
-    function resetGoal(goal) {
-        const ballRect = ball.getBoundingClientRect();
-        goal.style.left = ballRect.left + 'px';
-        goal.style.top = ballRect.top + 'px';
-        // Willekeurige afbeelding voor het doel
-        const randomImageIndex = Math.floor(Math.random() * goalImages.length);
-        goal.style.backgroundImage = `url('${goalImages[randomImageIndex]}')`;
-    }
-
-    // Voorkom dat de bal de container verlaat
-    function checkBoundary(ball) {
-        const ballRect = ball.getBoundingClientRect();
-        const containerRect = gameContainer.getBoundingClientRect();
-        if (ballRect.left < containerRect.left) {
-            ball.style.left = containerRect.left + 'px';
-        }
-        if (ballRect.right > containerRect.right) {
-            ball.style.left = containerRect.right - ball.clientWidth + 'px';
-        }
-        if (ballRect.top < containerRect.top) {
-            ball.style.top = containerRect.top + 'px';
-        }
-        if (ballRect.bottom > containerRect.bottom) {
-            ball.style.top = containerRect.bottom - ball.clientHeight + 'px';
-        }
-    }
-
-    // Initialiseer doelen
-    goals.forEach(goal => resetGoal(goal));
 });
