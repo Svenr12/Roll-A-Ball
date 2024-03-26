@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const gameContainer = document.getElementById('game-container');
     const goalImages = [
         'images/AHI_43545239363730323839.jpg',
-        'images/other_goal_image.jpg', // Voeg zoveel afbeeldingen toe als je wilt
+        'images/763.jpg', // Voeg zoveel afbeeldingen toe als je wilt
     ];
 
     // Beweging van de bal
