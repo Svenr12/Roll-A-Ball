@@ -1,3 +1,5 @@
+r
+In dit script wil ik dat wanneer de bal de goal raakt er een mp3 bestand wordt afgespeeld 
 document.addEventListener("DOMContentLoaded", function() {
     const ball = document.getElementById('ball');
     const goal = document.getElementById('goal');
@@ -26,8 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         // Controleer winvoorwaarde
         if (checkCollision(ball, goal)) {
-            // Speel het geluid af
-            playGoalSound();
             alert('Je hebt alle munitie afgepakt, Gefeliciteerd!');
         }
     });
@@ -41,11 +41,5 @@ document.addEventListener("DOMContentLoaded", function() {
                  ballRect.left > goalRect.right || 
                  ballRect.bottom < goalRect.top || 
                  ballRect.top > goalRect.bottom);
-    }
-
-    // Functie om het doelgeluid af te spelen
-    function playGoalSound() {
-        const audio = new Audio('Audio/im-bout-to-come.mp3'); // Vervang 'goal_sound.mp3' door het pad naar je MP3-bestand
-        audio.play();
     }
 });
