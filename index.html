@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bal Spel</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+    }
+    #speler {
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        position: absolute;
+    }
+    #goal {
+        width: 50px;
+        height: 50px;
+        background-color: green;
+        position: absolute;
+        top: 80%;
+        left: 80%;
+    }
+    .blokade {
+        width: 50px;
+        height: 50px;
+        background-color: blue;
+        position: absolute;
+    }
+</style>
+</head>
+<body>
+
+<div id="speler"></div>
+<div id="goal"></div>
+<div class="blokade" style="top: 100px; left: 200px;"></div>
+<div class="blokade" style="top: 200px; left: 400px;"></div>
+<!-- Voeg meer blokades toe zoals gewenst -->
+
+<script>
+document.addEventListener('keydown', function(event) {
+    const speler = document.getElementById('speler');
+    const goal = document.getElementById('goal');
+    const blokades = document.querySelectorAll('.blokade');
+    const speed = 10;
+
+    let left = parseInt(window.getComputedStyle(speler).getPropertyValue('left'));
+    let top = parseInt(window.getComputedStyle(speler).getPropertyValue('top'));
+
+    switch(event.keyCode) {
+        case 37: // left arrow
+            left -= speed;
+            break;
+        case 38: // up arrow
+            top -= speed;
+            break;
+        case 39: // right arrow
+            left += speed;
+            break;
+        case 40: // down arrow
+            top += speed;
+            break;
+    }
+
+    speler.style.left = left + 'px';
+    speler.style.top = top + 'px';
+
+    // Check collision with goal
+    if (checkCollision(speler, goal)) {
+        alert('Je hebt het doel bereikt! Ga door naar het volgende level.');
+        // Voeg hier code toe om door te gaan naar het volgende level
+    }
+
+    // Check collision with blokades
+    blokades.forEach(function(blokade) {
+        if (checkCollision(speler, blokade)) {
+            // Voeg hier code toe voor het geval van een botsing met een blokade
+            // Bijvoorbeeld: alert('Je bent tegengehouden door een blokade!');
+            // Je kunt ook andere acties uitvoeren, zoals het spel stoppen of de speler terugzetten naar het beginpunt
+        }
+    });
+});
+
+function checkCollision(speler, element) {
+    const spelerRect = speler.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+    
+    return !(
+        spelerRect.right < elementRect.left || 
+        spelerRect.left > elementRect.right || 
+        spelerRect.bottom < elementRect.top || 
+        spelerRect.top > elementRect.bottom
+    );
+}
+</script>
+
+</body>
+</html>
