@@ -1,5 +1,3 @@
-r
-In dit script wil ik dat wanneer de bal de goal raakt er een mp3 bestand wordt afgespeeld 
 document.addEventListener("DOMContentLoaded", function() {
     const ball = document.getElementById('ball');
     const goal = document.getElementById('goal');
