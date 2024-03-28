@@ -15,13 +15,11 @@
         background-color: red;
         position: absolute;
     }
-    #goal {
+    .goal {
         width: 50px;
         height: 50px;
         background-color: green;
         position: absolute;
-        top: 80%;
-        left: 80%;
     }
     .blokade {
         width: 50px;
@@ -34,12 +32,14 @@
 <body>
 
 <div id="speler"></div>
-<div id="goal"></div>
+<div id="goal" class="goal"></div>
 <div class="blokade" style="top: 100px; left: 200px;"></div>
 <div class="blokade" style="top: 200px; left: 400px;"></div>
 <!-- Voeg meer blokades toe zoals gewenst -->
 
 <script>
+let level = 1;
+
 document.addEventListener('keydown', function(event) {
     const speler = document.getElementById('speler');
     const goal = document.getElementById('goal');
@@ -70,12 +70,14 @@ document.addEventListener('keydown', function(event) {
     // Check collision with goal
     if (checkCollision(speler, goal)) {
         alert('Je hebt het doel bereikt! Ga door naar het volgende level.');
-        // Voeg hier code toe om door te gaan naar het volgende level
+        level++;
+        changeLevel();
     }
 
     // Check collision with blokades
     blokades.forEach(function(blokade) {
         if (checkCollision(speler, blokade)) {
+            alert('Je bent tegengehouden door een blokade!');
             // Voeg hier code toe voor het geval van een botsing met een blokade
             // Bijvoorbeeld: alert('Je bent tegengehouden door een blokade!');
             // Je kunt ook andere acties uitvoeren, zoals het spel stoppen of de speler terugzetten naar het beginpunt
@@ -93,6 +95,12 @@ function checkCollision(speler, element) {
         spelerRect.bottom < elementRect.top || 
         spelerRect.top > elementRect.bottom
     );
+}
+
+function changeLevel() {
+    const goal = document.getElementById('goal');
+    goal.style.left = Math.floor(Math.random() * window.innerWidth) + 'px';
+    goal.style.top = Math.floor(Math.random() * window.innerHeight) + 'px';
 }
 </script>
 
