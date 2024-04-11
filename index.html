@@ -27,18 +27,33 @@
         background-color: blue;
         position: absolute;
     }
+    #level {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 18px;
+        color: white;
+    }
+    #score {
+        position: absolute;
+        top: 40px;
+        left: 10px;
+        font-size: 18px;
+        color: white;
+    }
 </style>
 </head>
 <body>
 
 <div id="speler"></div>
 <div id="goal" class="goal"></div>
-<div class="blokade" style="top: 100px; left: 200px;"></div>
-<div class="blokade" style="top: 200px; left: 400px;"></div>
-<!-- Voeg meer blokades toe zoals gewenst -->
+<div id="level">Level: 1</div>
+<div id="score">Score: 0</div>
 
 <script>
 let level = 1;
+let score = 0;
+let blokadeCount = 2; // Aantal blokkades in level 1
 
 document.addEventListener('keydown', function(event) {
     const speler = document.getElementById('speler');
@@ -69,18 +84,21 @@ document.addEventListener('keydown', function(event) {
 
     // Check collision with goal
     if (checkCollision(speler, goal)) {
+        score += 100;
+        document.getElementById('score').innerText = 'Score: ' + score;
         alert('Je hebt het doel bereikt! Ga door naar het volgende level.');
         level++;
+        document.getElementById('level').innerText = 'Level: ' + level;
         changeLevel();
+        increaseDifficulty();
     }
 
     // Check collision with blokades
     blokades.forEach(function(blokade) {
         if (checkCollision(speler, blokade)) {
-            alert('Je bent tegengehouden door een blokade!');
-            // Voeg hier code toe voor het geval van een botsing met een blokade
-            // Bijvoorbeeld: alert('Je bent tegengehouden door een blokade!');
-            // Je kunt ook andere acties uitvoeren, zoals het spel stoppen of de speler terugzetten naar het beginpunt
+            // Score aftrekken per seconde dat de blokkade wordt aangeraakt
+            score -= 1;
+            document.getElementById('score').innerText = 'Score: ' + score;
         }
     });
 });
@@ -101,6 +119,18 @@ function changeLevel() {
     const goal = document.getElementById('goal');
     goal.style.left = Math.floor(Math.random() * window.innerWidth) + 'px';
     goal.style.top = Math.floor(Math.random() * window.innerHeight) + 'px';
+}
+
+function increaseDifficulty() {
+    const gameArea = document.body;
+    for (let i = 0; i < blokadeCount; i++) {
+        const blokade = document.createElement('div');
+        blokade.className = 'blokade';
+        blokade.style.top = Math.floor(Math.random() * window.innerHeight) + 'px';
+        blokade.style.left = Math.floor(Math.random() * window.innerWidth) + 'px';
+        gameArea.appendChild(blokade);
+    }
+    blokadeCount++; // Verhoog aantal blokkades voor het volgende level
 }
 </script>
 
